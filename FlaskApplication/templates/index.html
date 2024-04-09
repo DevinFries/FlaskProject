@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TradeTrail</title>
+    <!-- Add your CSS file here -->
+    <link rel="stylesheet" href="static/css/site.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to TradeTrail</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Available Stocks</h2>
+            <!-- use a for loop here to display all available stocks -->
+            <div id="stocks">
+                <!-- Each stock can be a div with its own id -->
+                <div id="stock1">
+                    <h3>Stock Name</h3>
+                    <p>Ticker: </p>
+                    <p>Price: </p>
+                    <p>Volume: </p>
+                    <p>Market Capitalization: </p>
+                </div>
+            </div>
+        </section>
+        <section>
+            <h2>Trade</h2>
+            <!-- Add your form here for the user to make a trade -->
+            <form action="/trade" method="post">
+                <label for="stock">Stock:</label>
+                <input type="text" id="stock" name="stock">
+                <label for="quantity">Quantity:</label>
+                <input type="number" id="quantity" name="quantity">
+                <input type="submit" value="Buy">
+                <input type="submit" value="Sell">
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>© 2024 TradeTrail</p>
+    </footer>
+</body>
+</html>
+
