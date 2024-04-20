@@ -157,6 +157,32 @@ class Transaction(db.Model):
                     return True
         return False
 
+from flask import request, session, redirect, url_for, flash
+from werkzeug.security import check_password_hash
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        username = request.form.get("username")
+        password = request.form.get("password")
+
+        # Query the database for the user
+        user = User.query.filter_by(username=username).first()
+
+        # Check if the user exists and the password is correct
+        if user and check_password_hash(user.password, password):
+            # Log the user in by storing their user id in the session
+            session['user_id'] = user.id
+            flash('Login successful!', 'success')
+            return redirect(url_for('home'))
+        else:
+            flash('Invalid username or password. Please try again.', 'failure')
+            return redirect(url_for('login'))
+
+    # Render the login form template
+    return render_template("login.html")
+
+
 # Initialize the database
 def create_app():
     db.create_all()
