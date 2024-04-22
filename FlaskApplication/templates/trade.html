@@ -1,100 +1,95 @@
 {% extends "base.html" %}
 {% block body %}
 
-<h1>Trade</h1>
+<div class="row-dirt text-center p-3" style="max-width: 85%; margin: auto;">
+  
+  <!-- blue for buy button -->
+  <button type="button" class="btn btn-primary bg-primary btn-lg" data-bs-toggle="modal" data-bs-target="#buyModal" style="margin: 10px; width: 10%;">Buy</button>
 
-<!-- Buy button -->
-<button type="button" class="btn btn-primary bg-primary" data-bs-toggle="modal" data-bs-target="#buyModal">
-  Buy
-</button>
+  <div class="modal fade" id="buyModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="buyModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="buyModalLabel">Buy Stocks</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
 
-<!-- Buy modal -->
-<div class="modal fade" id="buyModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="buyModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="buyModalLabel">Buy Stocks</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form action="/trade" method="post">
-          <div class="form-floating">
-            <select name="stock" id="form-select" aria-label="Default select example">
-              <option selected>Select a company</option>
-              <option value="1">Google</option>
-              <option value="2">Microsoft</option>
-              <option value="3">Apple</option>
-            </select>
-            <select name="quantity" id="form-select" aria-label="Default select example">
-              <option selected>Select amount</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-            </select>
-          </div>
-          <!-- Display the total price here -->
-          <p>Total Price: $138.94 x 1 = $138.94</p>
+        <div class="modal-body">
+          <form action="/trade" method="post">
+            <div class="form-floating">
+              <select name="stock_ticker" id="form-select" aria-label="Default select example">
+                <option selected>Select a company</option>
+                {% for stock in stocks %}
+                <option value="{{ stock.ticker_symbol }}">{{ stock.company_name }}</option>
+                {% endfor %}
+              </select>
+              <input type="number" name="number_of_shares" placeholder="Quanity">
+            </div>
+          </form>
+
+          Total Price: $138.94 x 1 = $138.94
           <div class="form-check">
             <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
             <label class="form-check-label" for="flexCheckDefault">
               I Acknowledge ...
             </label>
           </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="submit" class="btn btn-primary bg-primary">Confirm</button>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary bg-primary">Confirm</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- Sell button -->
-<button type="button" class="btn btn-primary bg-success" data-bs-toggle="modal" data-bs-target="#sellModal">
-  Sell
-</button>
+  <!-- green for sell button -->
+  <button type="button" class="btn btn-primary bg-success btn-lg" data-bs-toggle="modal" data-bs-target="#sellModal" style="margin: 10px; width: 10%;">Sell</button>
 
-<!-- Sell modal -->
-<div class="modal fade" id="sellModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="sellModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="sellModalLabel">Sell Stocks</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form action="/trade" method="post">
-          <div class="form-floating">
-            <select name="stock" id="form-select" aria-label="Default select example">
-              <option selected>Select a company</option>
-              <option value="1">Google</option>
-              <option value="2">Microsoft</option>
-              <option value="3">Apple</option>
-            </select>
-            <select name="quantity" id="form-select" aria-label="Default select example">
-              <option selected>Select amount</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-            </select>
-          </div>
-          <!-- Display the total price here -->
-          <p>Total Price: $138.94 x 1 = $138.94</p>
+  <div class="modal fade" id="sellModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="sellModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="sellModalLabel">Sell Stocks</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+          <form action="/trade" method="post">
+            <div class="form-floating">
+              <select name="stock_ticker" id="form-select" aria-label="Default select example">
+                <option selected>Select a company</option>
+                {% for stock in stocks %}
+                <option value="{{ stock.ticker_symbol }}">{{ stock.company_name }}</option>
+                {% endfor %}
+              </select>
+              <input type="number" name="number_of_shares" placeholder="Quanity">
+            </div>
+          </form>
+
+          Total Price: $138.94 x 1 = $138.94
           <div class="form-check">
             <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
             <label class="form-check-label" for="flexCheckDefault">
               I Acknowledge ...
             </label>
           </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="submit" class="btn btn-primary bg-success">Confirm</button>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary bg-primary">Confirm</button>
+        </div>
       </div>
     </div>
   </div>
+
 </div>
+
+
+
+
+
 
 {% endblock %}

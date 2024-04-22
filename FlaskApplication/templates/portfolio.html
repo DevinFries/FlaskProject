@@ -1,37 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio - TradeTrail</title>
-    <!-- Add CSS file here -->
-    <link rel="stylesheet" href="static/css/style.css">
-</head>
-<body>
-    <header>
-        <h1>My Portfolio</h1>
-    </header>
-    <main>
-        <section>
-            <h2>My Stocks</h2>
-            <div id="stocks">
-                <!-- Each stock can be a div with its own id -->
-                <div id="stock1">
-                    <h3>Stock Name</h3>
-                    <p>Ticker: </p>
-                    <p>Price: </p>
-                    <p>Volume: </p>
-                </div>
-            </div>
-        </section>
-        <section>
-            <h2>Cash Balance</h2>
-            <!-- Display the user's cash balance here -->
-            <p id="cash_balance"></p>
-        </section>
-    </main>
-    <footer>
-        <p>© 2024 TradeTrail</p>
-    </footer>
-</body>
-</html>
+{% extends "base.html" %}
+{% block body %}
+
+
+<div class="row-dirt text-center p-3" style="max-width: 85%; margin: auto;">
+    
+        <select class="form-select" onchange="newSelectVal" aria-label="Default select example" style="max-width: 40%;">
+            <option value="appl">Apple Inc.</option>
+            <option value="msft">Microsoft Corp.</option>
+            <option value="googl">Alphabet Inc.</option>
+            <option value="fb">Facebook, Inc.</option>
+        </select>
+    
+        <table class="table table-striped" name="tablePort" method="GET" action="/" style="max-width: 40%;">
+            <thead>
+                <tr>
+                    <th scope="col">Ticker Symbol</th>
+                    <th scope="col">Ticker Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Volume</th>
+                </tr>
+            </thead>
+    
+            <tbody>
+                <tr>
+                    <td>APPL</td>
+                    <td>Apple Inc.</td>
+                    <td>$$$</td>
+                    <td>###</td>
+                </tr>
+            </tbody>
+
+            <tbody>
+                <tr>
+                    <td>MSFT</td>
+                    <td>Microsoft Corp.</td>
+                    <td>$$$</td>
+                    <td>###</td>
+                </tr>
+            </tbody>
+
+            <tbody>
+                <tr>
+                    <td>GOOGL</td>
+                    <td>Alphabet Inc.</td>
+                    <td>$$$</td>
+                    <td>###</td>
+                </tr>
+            </tbody>
+
+            <tbody>
+                <tr>
+                    <td>FB</td>
+                    <td>Facebook, Inc.</td>
+                    <td>$$$</td>
+                    <td>###</td>
+                </tr>
+            </tbody>
+    </table>
+</div>
+
+
+{% endblock %}
+

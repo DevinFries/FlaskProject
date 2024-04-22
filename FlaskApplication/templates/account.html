@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block body %}
+
+<div class="row-dirt text-center p-3" style="max-width: 85%; margin: auto;">
+  <div class="text-center mt-3" style="max-width: 480px; margin: auto;">
+    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+
+    <form action="/account" method="post">
+
+      <div class="form-floating mb-3">
+        <input type="email" class="form-control" id="email" placeholder="name@example.com" name="email">
+        <label for="email">Email address</label>
+      </div>
+  
+      <div class="form-floating mb-3">
+        <input type="password" class="form-control" id="password" placeholder="Password" name="password">
+        <label for="password">Password</label>
+      </div>
+  
+      <button class="w-100 btn btn-lg btn-primary mb-3" type="submit" value="Login">Sign in</button>
+
+    </form>
+
+    <br>
+
+    <a href="/newacc">
+      <button class="w-100 btn btn-lg btn btn-outline-primary mb-3" type="button">New Users click here!</button>
+    </a>
+</div>
+
+{% endblock %}

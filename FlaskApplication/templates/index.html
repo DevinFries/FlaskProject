@@ -1,47 +1,66 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TradeTrail</title>
-    <!-- Add your CSS file here -->
-    <link rel="stylesheet" href="static/css/site.css">
-</head>
-<body>
-    <header>
-        <h1>Welcome to TradeTrail</h1>
-    </header>
-    <main>
-        <section>
-            <h2>Available Stocks</h2>
-            <!-- use a for loop here to display all available stocks -->
-            <div id="stocks">
-                <!-- Each stock can be a div with its own id -->
-                <div id="stock1">
-                    <h3>Stock Name</h3>
-                    <p>Ticker: </p>
-                    <p>Price: </p>
-                    <p>Volume: </p>
-                    <p>Market Capitalization: </p>
-                </div>
-            </div>
-        </section>
-        <section>
-            <h2>Trade</h2>
-            <!-- Add your form here for the user to make a trade -->
-            <form action="/trade" method="post">
-                <label for="stock">Stock:</label>
-                <input type="text" id="stock" name="stock">
-                <label for="quantity">Quantity:</label>
-                <input type="number" id="quantity" name="quantity">
-                <input type="submit" value="Buy">
-                <input type="submit" value="Sell">
-            </form>
-        </section>
-    </main>
-    <footer>
-        <p>© 2024 TradeTrail</p>
-    </footer>
-</body>
-</html>
+{% extends "base.html" %}
+{% block body %}
 
+<link rel="stylesheet" href="{{ url_for ('static', filename='site.css')}}">
+
+<div class="row-dirt text-center p-3" style="max-width: 85%; margin: auto;">
+
+  <div class="text-center">
+    <img src="{{ url_for ('static', filename='gc_edit.png')}}" class="img-fluid" alt="Grand canyon landscape" />
+  </div>
+
+  <br>
+
+  <div class="row-grn p-3">
+    <div>
+      <h2>Welcome to TradeTrail, The place risk takers are rewarded.</h2>
+      <br>
+      <h4>Just like how the trails that our forefathers once paved we all have to start somewhere.</h4>
+      <h4>What better place then here. With TradeTrail will be there every step of the way through the peaks that touch the sky to the depths of a canyon you wont be walking alone.</h4>
+      <h4>With invenstments just waiting to be explored</h4>
+    </div>
+
+    <br>
+
+    <div>
+      <a href="/account">
+        <button type="button" class="btn btn-primary btn-lg">Join Now</button>
+      </a>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="row-red p-3">
+    <h2>This is how we roll with you.</h2>
+    <br>
+    <h4>Through our ease of use stock trading system you too can ascend to the peaks of any mountain.</h4>
+    <h4>With us as your guide you won't be left behind</h4>
+    <h6>Trade at your own risk*</h6>
+    <img src="{{ url_for ('static', filename='home_img.png')}}" class="img-fluid" alt="stock market hike" style="max-width: 30%;"/>
+  </div>
+
+  <br>
+
+  <div class="row-blu p-3">
+    <h2>Taking the landscape all in.</h2>
+    <br>
+    <h4>TradeTrail is a platform that allows you to trade stocks conveniently online. You can buy and sell stocks from various companies, monitor stock prices, and manage your investment portfolio, all from the comfort of your home.</h4>
+    <h4>With us you'll be able to view available stocks and their details. Buy and sell stocks with ease.</h4>
+    <h3>&</h3>
+    <h4>Track stock prices and market trends. Manage your investment portfolio.</h4>
+    <br>
+    <h2>Who are we?</h2>
+    <br>
+    <h4>We're IFT401 Team-2</h4>
+    <h4>Devin was the backbone</h4>
+    <h4>Maharshi was the intermediary</h4>
+    <h4>Jacob provided the exterior</h4>
+  </div>
+
+  <br>
+
+</div>
+
+
+{% endblock %}

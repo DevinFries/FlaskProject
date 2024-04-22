@@ -78,6 +78,10 @@ class Stock(db.Model):
     ticker_symbol = db.Column(db.String(10), unique=True, nullable=False)
     volume = db.Column(db.Integer, nullable=False) # Volume of the stock available for trading.
     price = db.Column(db.Float, nullable=False) 
+    date = db.Column(db.DateTime, default=func.now())
+    date = db.Column(db.Date)
+
+
 
     def update_price(self):
         self.price = self.price * random.uniform(0.95, 1.05)
@@ -157,6 +161,32 @@ class Transaction(db.Model):
                     return True
         return False
 
+from flask import request, session, redirect, url_for, flash
+from werkzeug.security import check_password_hash
+
+@app.route("/account", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        username = request.form.get("username")
+        password = request.form.get("password")
+
+        # Query the database for the user
+        user = User.query.filter_by(username=username).first()
+
+        # Check if the user exists and the password is correct
+        if user and check_password_hash(user.password, password):
+            # Log the user in by storing their user id in the session
+            session['user_id'] = user.id
+            flash('Login successful!', 'success')
+            return redirect(url_for('home'))
+        else:
+            flash('Invalid username or password. Please try again.', 'failure')
+            return redirect(url_for('login'))
+
+    # Render the login form template
+    return render_template("account.html")
+
+
 # Initialize the database
 def create_app():
     db.create_all()
@@ -193,6 +223,16 @@ def update_stock_prices():
 def home():
     stocks = Stock.query.all()
     return render_template('index.html', stocks=stocks)
+
+ 
+@app.route("/account")
+def account():
+    return render_template('account.html')
+
+@app.route("/newacc")
+def newacc():
+    return render_template('newacc.html')
+
 
 @app.route("/contact")
 def contact():

@@ -1,38 +1,32 @@
 {% extends "base.html" %}
 {% block body %}
 
-<h1>Transactions</h1>
-
-<!-- table with transactions -->
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">Ticker Symbol</th>
-      <th scope="col">Ticker Name</th>
-      <th scope="col">Price</th>
-      <th scope="col">Quantity</th>
-      <th scope="col">Balance Changes</th>    <!-- indicate bought/sold with text color red/green-->
-      <th scope="col">Transaction Time</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for transaction in transactions %}
-    <tr>
-      <th scope="row">{{ transaction.stock.ticker }}</th>
-      <td>{{ transaction.stock.company_name }}</td>
-      <td>${{ transaction.price }}</td>
-      <td>{{ transaction.quantity }}</td>
-      <td>{{ transaction.action == 'Buy' ? '+ ' : '- ' }}${{ transaction.price * transaction.quantity }}</td>
-      <td>{{ transaction.timestamp }}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
-
-<div class="row">
-    <div class="col-sm bg-light p-3 border py-5 mt-3 mb-5">
-      Transactions fluff row
-    </div>
+<div class="row-dirt text-center p-3" style="max-width: 85%; margin: auto;">
+  <!-- table with buy button. side note if you want to buy should it redirect to the stock page or pop up a modal-thing -->
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Ticker Symbol</th>
+        <th scope="col">Ticker Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Transaction Type</th>
+        <th scope="col">Transaction Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for transaction in transactions %}
+      <tr>
+        <td>{{ transaction.stock.ticker_symbol }}</td>
+        <td>{{ transaction.stock.company_name }}</td>
+        <td>${{ transaction.price }}</td>
+        <td>{{ transaction.quanity }}</td>
+        <td>{{ transaction.type }}</td>
+        <td>{{ transaction.timestamp }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 </div>
 
 {% endblock %}

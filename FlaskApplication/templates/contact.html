@@ -1,32 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - TradeTrail</title>
-    <!-- Add CSS file here -->
-    <link rel="stylesheet" href="static/css/style.css">
-</head>
-<body>
-    <header>
-        <h1>Contact Us</h1>
-    </header>
-    <main>
-        <section>
-            <h2>We'd love to hear from you!</h2>
-            <form action="/contact" method="post">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-                <label for="message">Message:</label>
-                <textarea id="message" name="message" required></textarea>
-                <input type="submit" value="Submit">
-            </form>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2024 TradeTrail</p>
-    </footer>
-</body>
-</html>
+{% extends "base.html" %}
+{% block body %}
+
+<div class="row-dirt text-center p-3" style="max-width: 85%; margin: auto;">
+    <h1 class="h3 mb-3 fw-normal">Connect with us</h1>
+    <form action="/contact" method="post">
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="name" placeholder="John Doe" name="name">
+            <label for="name">Name</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="email" placeholder="name@example.com" name="email">
+            <label for="email">Email</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="message" placeholder="Hello World" name="message">
+            <label for="message">Message</label>
+        </div>
+
+        <button class="w-100 btn btn-lg btn-primary mb-3" style="max-width: 30%;" type="submit" value="Submit">Submit</button>
+        </div>
+    </form>
+</div>
+
+
+{% endblock %}

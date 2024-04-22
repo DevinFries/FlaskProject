@@ -1,0 +1,27 @@
+.box {
+    outline: solid
+    
+}
+
+.row-grn {
+    background-color: #abeac4;
+    border-radius: 60px;
+}
+
+.row-red {
+    background-color: #d07474;
+    border-radius: 60px;
+}
+
+.row-blu {
+    background-color: #90daee;
+    border-radius: 60px;
+}
+
+.row-null {
+    background-color: #f5f4f4;
+}
+
+.row-dirt {
+    background-color: #f5f0e4;
+}
