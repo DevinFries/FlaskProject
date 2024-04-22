@@ -219,6 +219,11 @@ def update_stock_prices():
 def home():
     stocks = Stock.query.all()
     return render_template('index.html', stocks=stocks)
+ 
+@app.route("/newacc")
+def newacc():
+    return render_template('newacc.html')
+
 
 @app.route("/contact")
 def contact():
