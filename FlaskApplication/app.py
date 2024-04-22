@@ -164,7 +164,11 @@ class Transaction(db.Model):
 from flask import request, session, redirect, url_for, flash
 from werkzeug.security import check_password_hash
 
+<<<<<<< HEAD
 @app.route("/account", methods=["GET", "POST"])
+=======
+@app.route("/login", methods=["GET", "POST"])
+>>>>>>> 8d722616562307e6ae01f75888f7a7e96795baad
 def login():
     if request.method == "POST":
         username = request.form.get("username")
@@ -184,7 +188,11 @@ def login():
             return redirect(url_for('login'))
 
     # Render the login form template
+<<<<<<< HEAD
     return render_template("account.html")
+=======
+    return render_template("login.html")
+>>>>>>> 8d722616562307e6ae01f75888f7a7e96795baad
 
 
 # Initialize the database
@@ -223,6 +231,11 @@ def update_stock_prices():
 def home():
     stocks = Stock.query.all()
     return render_template('index.html', stocks=stocks)
+ 
+@app.route("/newacc")
+def newacc():
+    return render_template('newacc.html')
+
 
  
 @app.route("/account")
