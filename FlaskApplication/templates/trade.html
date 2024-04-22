@@ -14,7 +14,6 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
-<<<<<<< HEAD
         <div class="modal-body">
           <form action="/trade" method="post">
             <div class="form-floating">
@@ -29,36 +28,12 @@
           </form>
 
           Total Price: $138.94 x 1 = $138.94
-=======
-<!-- Buy modal -->
-<div class="modal fade" id="buyModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="buyModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="buyModalLabel">Buy Stocks</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form action="/trade" method="post">
-          <div class="form-floating">
-            <select name="stock_ticker" id="form-select" aria-label="Default select example">
-              <option selected>Select a company</option>
-              {% for stock in stocks %}
-              <option value="{{ stock.ticker_symbol }}">{{ stock.company_name }}</option>
-              {% endfor %}
-            </select>
-            <input type="number" name="number_of_shares" placeholder="Quantity">
-          </div>
-          <!-- Display the total price here -->
-          <p>Total Price: $138.94 x 1 = $138.94</p>
->>>>>>> 8d722616562307e6ae01f75888f7a7e96795baad
           <div class="form-check">
             <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
             <label class="form-check-label" for="flexCheckDefault">
               I Acknowledge ...
             </label>
           </div>
-<<<<<<< HEAD
         </div>
 
         <div class="modal-footer">
@@ -106,11 +81,6 @@
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
           <button type="button" class="btn btn-primary bg-primary">Confirm</button>
         </div>
-=======
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button type="submit" class="btn btn-primary bg-primary">Confirm</button>
-        </form>
->>>>>>> 8d722616562307e6ae01f75888f7a7e96795baad
       </div>
     </div>
   </div>

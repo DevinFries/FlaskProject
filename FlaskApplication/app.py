@@ -81,6 +81,15 @@ class Stock(db.Model):
     date = db.Column(db.DateTime, default=func.now())
     date = db.Column(db.Date)
 
+    def __init__(self, ticker, price):
+        self.ticker = ticker
+        self.price = price
+
+    def __repr__(self):
+        return f'{self.ticker} at {self.price}'
+
+    
+
 
 
     def update_price(self):
