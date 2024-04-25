@@ -9,7 +9,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'team2'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:eadgbe21@localhost:3306/stocks'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
+db = SQLAlchemy(app) 
 
 # Define database models
 class User(db.Model):
@@ -87,10 +87,6 @@ class Stock(db.Model):
 
     def __repr__(self):
         return f'{self.ticker} at {self.price}'
-
-    
-
-
 
     def update_price(self):
         self.price = self.price * random.uniform(0.95, 1.05)
@@ -237,20 +233,17 @@ def home():
     stocks = Stock.query.all()
     return render_template('index.html', stocks=stocks)
  
-
-
-
  
 @app.route("/account")
 def account():
     return render_template('account.html')
 
-@app.route("/newacc")
+@app.route("/newacc", methods=['GET', 'POST'])
 def newacc():
     return render_template('newacc.html')
 
 
-@app.route("/contact")
+@app.route("/contact", methods=['GET', 'POST'])
 def contact():
     return render_template('contact.html')
 

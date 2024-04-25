@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% block body %}
 
-<link rel="stylesheet" href="{{ url_for ('static', filename='site.css')}}">
+<link rel="stylesheet" href="{{ url_for ('static', filename='static/site.css')}}">
 
 <div class="row-dirt text-center p-3" style="max-width: 85%; margin: auto;">
 
   <div class="text-center">
-    <img src="{{ url_for ('static', filename='gc_edit.png')}}" class="img-fluid" alt="Grand canyon landscape" />
+    <img src="{{ url_for ('static', filename='static/gc_edit.png')}}" class="img-fluid" alt="Grand canyon landscape" />
   </div>
 
   <br>
@@ -37,7 +37,7 @@
     <h4>Through our ease of use stock trading system you too can ascend to the peaks of any mountain.</h4>
     <h4>With us as your guide you won't be left behind</h4>
     <h6>Trade at your own risk*</h6>
-    <img src="{{ url_for ('static', filename='home_img.png')}}" class="img-fluid" alt="stock market hike" style="max-width: 30%;"/>
+    <img src="{{ url_for ('static', filename='static/home_img.png')}}" class="img-fluid" alt="stock market hike" style="max-width: 30%;"/>
   </div>
 
   <br>
