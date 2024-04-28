@@ -1,35 +1,12 @@
 {% extends "base.html" %}
 {% block body %}
-<<<<<<< HEAD
-=======
 
-<header>
-    <h1>Welcome to TradeTrail</h1>
-</header>
-<main>
-    <section>
-        <h2>About TradeTrail</h2>
-        <p>TradeTrail is a platform that allows you to trade stocks conveniently online. You can buy and sell stocks from various companies, monitor stock prices, and manage your investment portfolio, all from the comfort of your home.</p>
-        <p>With TradeTrail, you can:</p>
-        <ul>
-            <li>View available stocks and their details.</li>
-            <li>Buy and sell stocks with ease.</li>
-            <li>Track stock prices and market trends.</li>
-            <li>Manage your investment portfolio.</li>
-        </ul>
-    </section>
-</main>
-
-{% endblock %}
-
->>>>>>> 8d722616562307e6ae01f75888f7a7e96795baad
-
-<link rel="stylesheet" href="{{ url_for ('static', filename='site.css')}}">
+<link rel="stylesheet" href="{{ url_for ('static', filename='static/site.css')}}">
 
 <div class="row-dirt text-center p-3" style="max-width: 85%; margin: auto;">
 
   <div class="text-center">
-    <img src="{{ url_for ('static', filename='gc_edit.png')}}" class="img-fluid" alt="Grand canyon landscape" />
+    <img src="{{ url_for ('static', filename='static/gc_edit.png')}}" class="img-fluid" alt="Grand canyon landscape" />
   </div>
 
   <br>
@@ -60,7 +37,7 @@
     <h4>Through our ease of use stock trading system you too can ascend to the peaks of any mountain.</h4>
     <h4>With us as your guide you won't be left behind</h4>
     <h6>Trade at your own risk*</h6>
-    <img src="{{ url_for ('static', filename='home_img.png')}}" class="img-fluid" alt="stock market hike" style="max-width: 30%;"/>
+    <img src="{{ url_for ('static', filename='static/home_img.png')}}" class="img-fluid" alt="stock market hike" style="max-width: 30%;"/>
   </div>
 
   <br>

@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 {% block body %}
 
-<<<<<<< HEAD
 
 <div class="row-dirt text-center p-3" style="max-width: 85%; margin: auto;">
     
@@ -63,40 +62,3 @@
 
 {% endblock %}
 
-=======
-<div class="container">
-    <h1 class="text-center my-4">My Portfolio</h1>
-
-    <div class="row">
-        <div class="col-md-8">
-            <h2 class="my-4">My Stocks</h2>
-            <!-- You can use a for loop here to display all stocks owned by the user -->
-            {% for stock in stocks %}
-            <div class="card mb-4">
-                <div class="card-body">
-                    <h5 class="card-title">{{ stock.company_name }}</h5>
-                    <p class="card-text">
-                        Ticker: {{ stock.ticker_symbol }}<br>
-                        Price: ${{ stock.price }}<br>
-                        Volume: {{ stock.volume }}
-                    </p>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-
-        <div class="col-md-4">
-            <h2 class="my-4">Cash Balance</h2>
-            <!-- Display the user's cash balance here -->
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Balance</h5>
-                    <p class="card-text">${{ cash_balance }}</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-{% endblock %}
->>>>>>> 8d722616562307e6ae01f75888f7a7e96795baad
