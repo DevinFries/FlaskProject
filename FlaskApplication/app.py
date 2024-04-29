@@ -4,10 +4,10 @@ from sqlalchemy.sql import func
 import os
 import datetime
 import random
- 
+ #app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:eadgbe21@localhost:3306/stocks'
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'team2'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:eadgbe21@localhost:3306/stocks'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app) 
 
@@ -111,23 +111,56 @@ class Stock(db.Model):
                 return False
         else:
              return False  # Market is not open
-
-    def sell_stock(self, stock, quantity):
-        # Check if the market is open
-        current_time = datetime.datetime.now().time()
-        current_day = datetime.datetime.now().strftime('%A')
-        if current_day in market_schedule['open_days'] and market_hours['open'] <= current_time <= market_hours['close']:
-            if stock in self.stocks:
-                self.cash_balance += stock.price * quantity
-                self.stocks.remove(stock)
-                new_transaction = Transaction(user_id=self.id, stock_id=stock.id, action='Sell', quantity=quantity, price=stock.price)
-                db.session.add(new_transaction)
-                db.session.commit()
-                return True
-            else:
-                return False  # Stock not owned by user
+        
+# Route to handle buying stocks
+@app.route('/buy/<int:id>', methods=['POST'])
+def buy_stock(id):
+    stock = Stock.query.get(id)
+    if request.method == 'POST':
+        quantity = int(request.form['quantity'])
+        if quantity <= stock.volume:
+            # Deduct the purchased quantity from the stock volume
+            stock.volume -= quantity
+            db.session.commit()
+            return redirect(url_for('home'))
         else:
-            return False  # Market is not open
+            return "Not enough stocks available"
+    return redirect(url_for('home'))
+        
+# Route to handle selling stocks
+@app.route('/sell/<int:id>', methods=['POST'])
+def sell_stock(id):
+    stock = Stock.query.get(id)
+    if request.method == 'POST':
+        quantity = int(request.form['quantity'])
+        if can_sell_stock(stock, quantity):
+            sell_stock_transaction(stock, quantity)
+            return redirect(url_for('home'))
+        else:
+            return "Cannot sell stock at the moment"
+    return redirect(url_for('home'))
+
+def can_sell_stock(stock, quantity):
+    # Check if the market is open
+    current_time = datetime.datetime.now().time()
+    current_day = datetime.datetime.now().strftime('%A')
+    if current_day in market_schedule['open_days'] and market_schedule['open'] <= current_time <= market_schedule['close']:
+        return True
+    else:
+        return False
+
+def sell_stock_transaction(stock, quantity):
+    # Check if the user owns the stock
+    if stock.volume >= quantity:
+        # Deduct the sold quantity from the stock volume
+        stock.volume -= quantity
+        db.session.commit()
+        # Log the transaction
+        new_transaction = Transaction(user_id=current_user.id, stock_id=stock.id, action='Sell', quantity=quantity, price=stock.price)
+        db.session.add(new_transaction)
+        db.session.commit()
+    else:
+        return "Not enough stocks available for sale"
 
 # Create a secondary table for the many-to-many relationship between User and Stock
 user_stock = db.Table('user_stock',
